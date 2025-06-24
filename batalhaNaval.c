@@ -1,17 +1,58 @@
-#include <stdio.h>
-
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+#include <stdio.h>  // Inclusão da biblioteca padrão de entrada e saída
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+    // Variáveis auxiliares para impressão do tabuleiro
+    char linha;      // Usada para imprimir as letras das colunas (A, B, C, ...)
+    int coluna;      // (Não usada diretamente neste código)
+
+    // Inicialização do tabuleiro 10x10 com todos os valores zerados
+    int tabuleiro[10][10] = {
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0}
+    };
+
+    // Impressão da linha superior com as letras (A a J) representando as colunas
+    for (int i = 0; i < 1; i++) {
+        linha = 'A';             // Começa pela letra A
+        printf(" X");            // Espaço reservado para os índices das linhas (1 a 10)
+        for (int j = 0; j < 10; j++) {
+            printf(" %c", linha); // Imprime letras A até J
+            ++linha;              // Avança para a próxima letra
+        }
+        printf("\n");            // Quebra de linha após imprimir os títulos das colunas
+    }
+
+    // Impressão do tabuleiro com os valores (todos 0) e a numeração das linhas (1 a 10)
+    for (int i = 0; i < 10; i++) {
+        // Imprime o número da linha (alinhado corretamente)
+        if (i < 9) {
+            printf(" %d ", i + 1);   // Espaço extra para alinhar números de 1 dígito
+        } else {
+            printf("%d ", i + 1);    // Sem espaço extra para o número 10
+        }
+
+        // Imprime os valores da linha do tabuleiro
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+
+        printf("\n");  // Quebra de linha ao fim da linha do tabuleiro
+    }
+
+
+    
+
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
+   // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
@@ -38,3 +79,4 @@ int main() {
 
     return 0;
 }
+
