@@ -4,7 +4,7 @@ int main() {
     // Variáveis auxiliares para manipulação de coordenadas e direção da embarcação
     char coluna, valorColunaChar;       // 'coluna' para imprimir letras; 'valorColunaChar' para receber entrada do usuário
     int valorLinha, valorColuna;        // Linha e coluna selecionadas pelo jogador
-    int vertHonz;                       // Direção da embarcação (1 = vertical, 2 = horizontal)
+    int vertHonz, rotacao;                       // Direção da embarcação (1 = vertical, 2 = horizontal)
     int sair;                           // Usada na estrutura do-while para controlar a repetição
 
     // Inicializa um tabuleiro 10x10 com todos os valores em zero
@@ -62,25 +62,31 @@ int main() {
 
         // Converte o caractere da coluna para um número de 1 a 10
         switch (valorColunaChar) {
-            case 'a': case 'A': valorColuna = 1; break;
-            case 'b': case 'B': valorColuna = 2; break;
-            case 'c': case 'C': valorColuna = 3; break;
-            case 'd': case 'D': valorColuna = 4; break;
-            case 'e': case 'E': valorColuna = 5; break;
-            case 'f': case 'F': valorColuna = 6; break;
-            case 'g': case 'G': valorColuna = 7; break;
-            case 'h': case 'H': valorColuna = 8; break;
-            case 'i': case 'I': valorColuna = 9; break;
-            case 'j': case 'J': valorColuna = 10; break;
+            case 'a': case 'A': case '1': valorColuna = 1; break;
+            case 'b': case 'B': case '2': valorColuna = 2; break;
+            case 'c': case 'C': case '3': valorColuna = 3; break;
+            case 'd': case 'D': case '4': valorColuna = 4; break;
+            case 'e': case 'E': case '5': valorColuna = 5; break;
+            case 'f': case 'F': case '6': valorColuna = 6; break;
+            case 'g': case 'G': case '7': valorColuna = 7; break;
+            case 'h': case 'H': case '8': valorColuna = 8; break;
+            case 'i': case 'I': case '9': valorColuna = 9; break;
+            case 'j': case 'J': case '10': valorColuna = 10; break;
             default:
                 printf("\nSomente letras de A a J são aceitas!\n");
                 return 0;
         }
 
         // Escolha da direção do navio
-        printf("1. Para posicao vertical\n2. Para posicao horizontal\n");
+        printf("1. Para posicao vertical\n2. Para posicao horizontal\n3. Para Diagonal\n");
         scanf("%d", &vertHonz);
 
+        if (vertHonz == 3)
+        {
+            printf("1. Para diagonal esquerda\n2. Para diagonal direita\n");
+            scanf("%d", &rotacao);
+        }
+        
         // Ajusta os índices para a matriz (matriz começa em 0)
         valorLinha--;
         valorColuna--;
@@ -92,9 +98,15 @@ int main() {
         if (vertHonz == 1) {
             tabuleiro[valorLinha - 1][valorColuna] = 3;
             tabuleiro[valorLinha + 1][valorColuna] = 3;
-        } else {
+        } else if (vertHonz == 2){
             tabuleiro[valorLinha][valorColuna - 1] = 3;
             tabuleiro[valorLinha][valorColuna + 1] = 3;
+        }else if (vertHonz == 3 && rotacao == 1){
+            tabuleiro[valorLinha - 1][valorColuna - 1] = 3;
+            tabuleiro[valorLinha + 1][valorColuna + 1] = 3;
+        }else if (vertHonz == 3 && rotacao == 2){
+            tabuleiro[valorLinha + 1][valorColuna - 1] = 3;
+            tabuleiro[valorLinha - 1][valorColuna + 1] = 3;
         }
 
     } while (sair != 0);  // Como 'sair' nunca é alterado, esse loop só termina com return lá em cima
